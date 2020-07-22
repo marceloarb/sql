@@ -66,10 +66,10 @@ WHERE education = 'Associate Degree';
 SELECT * from tekcampers
 WHERE education NOT IN ('Masters Degree','Bachelors Degree','Associate Degree');
 
-CREATE TABLE IF NOT EXISTS `ta-Emilios` SELECT * FROM tekcampers WHERE id IN(1,2,6,7,12,16,17,22,24,30);
+CREATE TABLE IF NOT EXISTS `ta-Emilios` SELECT * FROM tekcampers WHERE id IN(1,2,6,7,12,16,17,22,24,30,38);
 
 
-REATE TABLE `tc1-Marcelo-Barbosa-`.`hobbies` (
+CREATE TABLE `tc1-Marcelo-Barbosa-`.`hobbies` (
   `idhobbies` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`idhobbies`),
@@ -128,9 +128,30 @@ SELECT a.first_name,c.name FROM tekcampers as a
 INNER JOIN tekcampers_hobbies as b ON a.id = b.tekcamper_id
 INNER JOIN hobbies AS c ON b.hobby_id = c.idhobbies;
 
+
 ALTER TABLE hobbies CHANGE idhobbies hobby_name varchar(25);
+
 
 
 SELECT a.first_name,c.hobby_name FROM tekcampers as a 
 INNER JOIN tekcampers_hobbies as b ON a.id = b.tekcamper_id
 INNER JOIN hobbies AS c ON b.hobby_id = c.idhobbies;
+
+
+UPDATE tekcampers SET bootcamp = 'Coding Dojo' WHERE id IN (7,12,6,38);
+UPDATE tekcampers SET bootcamp = 'DevMountain' WHERE id IN (25,17);
+SELECT * FROM tekcampers;
+UPDATE tekcampers SET bootcamp = 'Trilogy Education' WHERE id IN (35);
+UPDATE tekcampers SET bootcamp = 'U.S. Navy bootcamp' WHERE id IN (2);
+UPDATE tekcampers SET bootcamp = 'SMU Coding Bootcamp' WHERE id IN (21);
+
+-- This query did not work. All the bootcamp places are in the wrong place.
+INSERT INTO `ta-Emilios` (`bootcamp`) SELECT bootcamp FROM tekcampers;
+
+
+INSERT `ta-Emilios` SELECT * FROM tekcampers WHERE id IN (1,2,6,7,12,16,17,22,24,30,38);
+
+
+
+
+SELECT * FROM `tc1-Marcelo-Barbosa-`.`ta-Emilios`;
