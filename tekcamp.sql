@@ -121,3 +121,16 @@ SELECT first_name,name FROM tekcampers INNER JOIN hobbies ON hobbies.tekcampers_
 ALTER TABLE tekcampers ADD (bootcamp VARCHAR(25));
 
 ALTER TABLE `ta-Emilios` ADD (bootcamp VARCHAR(25));
+
+-- Many to Many relationship query working fine.
+
+SELECT a.first_name,c.name FROM tekcampers as a 
+INNER JOIN tekcampers_hobbies as b ON a.id = b.tekcamper_id
+INNER JOIN hobbies AS c ON b.hobby_id = c.idhobbies;
+
+ALTER TABLE hobbies CHANGE idhobbies hobby_name varchar(25);
+
+
+SELECT a.first_name,c.hobby_name FROM tekcampers as a 
+INNER JOIN tekcampers_hobbies as b ON a.id = b.tekcamper_id
+INNER JOIN hobbies AS c ON b.hobby_id = c.idhobbies;
